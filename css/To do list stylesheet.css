@@ -1,53 +1,51 @@
 html{
     height: 100%;
+    width:100%;
 }
 body{
     height: 100%;
+    width: 100%;
     
 }
-
-.backlayer{
-    height: 100%;
-}
-
-.slideShow {
-    position: relative;
-    background-color: aquamarine;
-    width: 75%;
-    float: left;
-    height: 100%;
-}
-.signUpAndLogin{
-    position: relative;
+.sidemenu{
     background-color: aqua;
-    width: 25%;
-    float: right;
+    width: 15%;
     height: 100%;
+    float: left;
 }
-.slideShowWrapper{
+.listSpace{
     background-color: blue;
-    width: 50%;
-    position: absolute;
-    height: 300px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    width: 55%;
+    height: 100%;
+    float: left;
+}.itemInfoSpace{
+    background-color: chartreuse;
+    width: 30%;
+    height:100%;
+    float: left;
     
 }
 
-.signUpAndLoginWrapper{
-    background-color: blue;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    height: 300px;
-    width: 225px;
-}
-.button{
+.sidebarGroup{
     background-color: grey;
-    border: 1px;
-    text-align: center;
-    width: 50px;
+}
+.sidebarGroup.active{
+    background-color:lightgray; 
+}
+.listWrapper{
+    width:80%;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%);
+}
+.sidebarList{
+    background-color: lightgray;
+    width: 80%;
+}
+.listItem{
+    background-color: grey;
+}
+.listItemName{
+    float: left;
     
 }

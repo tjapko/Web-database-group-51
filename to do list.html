@@ -1,7 +1,7 @@
 <!doctype html>
 
 <html>
-      <!--<link rel="stylesheet" href="css/To do list stylesheet.css">-->
+      <link rel="stylesheet" href="css/To do list stylesheet.css">
     
     <head>
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class ="sidemenu">
-            <div class="sidebarGroup"> this is a group</div>
+            <div class="sidebarGroup active"> this is a group</div>
                 <div class="sidebarList"> item A</div>
                 <div class="sidebarList"> item B</div>
 
@@ -28,17 +28,19 @@
                 </select>
             </div>
             <div class="listWrapper">
-                <div class="listItem">
-                    <div class="listItemName">item 1</div>
-                    <div class="listITemDate"> 21-11-2016</div>
-                </div>
-                 <div class="listItem">
-                    <div class="listItemName">item 1</div>
-                    <div class="listITemDate"> 21-11-2016</div>
-                </div>
-                 <div class="listItem">
-                    <div class="listItemName">item 1</div>
-                    <div class="listITemDate"> 21-11-2016</div>
+                <div class="itemWrapper">
+                    <div class="listItem">
+                        <div class="listItemName">item 1</div>
+                        <div class="listItemDate"> 21-11-2016</div>
+                    </div>
+                     <div class="listItem">
+                        <div class="listItemName">item 1</div>
+                        <div class="listItemDate"> 21-11-2016</div>
+                    </div>
+                     <div class="listItem">
+                        <div class="listItemName">item 1</div>
+                        <div class="listItemDate"> 21-11-2016</div>
+                    </div>
                 </div>
                 <div class="listItemAdd">
                 + add nem item
@@ -72,6 +74,7 @@
                 </select>
             </div>
         </div>
+        <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
         <script src="js/app.js"></script>
     </body>
     

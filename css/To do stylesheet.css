@@ -1,0 +1,53 @@
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+    
+}
+
+.backlayer{
+    height: 100%;
+}
+
+.slideShow {
+    position: relative;
+    background-color: aquamarine;
+    width: 75%;
+    float: left;
+    height: 100%;
+}
+.signUpAndLogin{
+    position: relative;
+    background-color: aqua;
+    width: 25%;
+    float: right;
+    height: 100%;
+}
+.slideShowWrapper{
+    background-color: blue;
+    width: 50%;
+    position: absolute;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
+}
+
+.signUpAndLoginWrapper{
+    background-color: blue;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 300px;
+    width: 225px;
+}
+.button{
+    background-color: grey;
+    border: 1px;
+    text-align: center;
+    width: 50px;
+    
+}
