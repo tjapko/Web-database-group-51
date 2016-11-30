@@ -8,13 +8,13 @@ body{
     
 }
 .sidemenu{
-    background-color: aqua;
+    background-color: pink;
     width: 15%;
     height: 100%;
     float: left;
 }
 .listSpace{
-    background-color: blue;
+    background-color: purple;
     width: 55%;
     height: 100%;
     float: left;
