@@ -6,6 +6,8 @@ var main = function () {
 
     //arrays
     var groups = [];
+    
+    
 
     // var group = function(groupname){
     //     this.groupname = groupname;
@@ -23,6 +25,14 @@ var main = function () {
         $(".sidemenu").append(this.html);
     };
     
+     var getgrouparray = function(groupid){
+        var i;
+        for(i=0; i<groups.length; i++){
+            if(groups[i].id == groupid){
+                return groups[i].grouparray;
+            }
+        }
+    }
     
     // prototypes of Group
     
@@ -92,33 +102,42 @@ var main = function () {
     groupA.addList(listB);
     groupB.addList(listA);
     
-    var extractlisthtml = function(groupid){
-       var i;
-        for(i = 0; i < groups.length; i++){
-            if(groups[i].id == groupid){
-            window.alert("hoi");
-
-             var html;
-            var j;
-                for(j=0; j<groups[i].grouparray.length;j++){
-                    this.html +=groups[i].grouparray[j].html;
-                }
-            }
+   
+    
+    var extractlistshtml = function(groupid){
+        var grouparray = getgrouparray(groupid);
+        var html;
+        var j;
+        for(j=0; j<grouparray.length;j++){
+            this.html +=grouparray[j].html;
         }
+            
+    
         return this.html;
     };
     
+    var extractitemshtml = function(groupid, listid){
+        var i;
+        for(i=0; i<groups.length; i++){}
+    }
+    
+    var Selectlist = function(listid){
+         $(".itemWrapper").empty();
+        
+        $(".itemWrapper").append(listitems);
+    }
         // look for the current active list
     $(".sidebarGroup").toArray().forEach(function (element) {
         //create a click handler for this element
         $(element).on("click", function(){
             $(".sidebarGroup").removeClass("active");
             $(element).addClass("active");
-            $(".itemWrapper").empty();
             $(".sidebarList").remove();
+             $(".itemWrapper").empty();
             groupid = $(".sidebarGroup.active").get(0).id;
-            listhtml = extractlisthtml(groupid);
+            listhtml = extractlistshtml(groupid);
             $(".sidebarGroup.active").append(listhtml);
+            // make this one active $(".sidebarGroup.active .sidebarList(1)")
             return false;
         });
     });
