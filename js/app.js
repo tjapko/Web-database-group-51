@@ -27,6 +27,7 @@ var main = function () {
     
      var getgrouparray = function(groupid){
         var i;
+       
         for(i=0; i<groups.length; i++){
             if(groups[i].id == groupid){
                 return groups[i].grouparray;
@@ -53,6 +54,19 @@ var main = function () {
         this.html=' <div id="'+ this.id +'" class="sidebarList">'+ this.name + '</div>';
     };
     
+    var getlistarray = function(listid){
+        var i;
+        for(i=0; groups.length;i++){
+            var j;
+            for(j=0; j<groups[i].grouparray.length;j++){
+                 if(groups[i].grouparray[j].id == listid){
+                return groups[i].grouparray[j].listarray;
+                 }
+           
+            }
+        }
+    }
+    
     // test list
      var lijstA = new List('lijstA');
 
@@ -62,10 +76,11 @@ var main = function () {
         this.discription = discription;
         this.duedate = duedate;
         this.priority = priority;
-        this.html ='<div class="listItem"><div class="listItemName">'+ this.title + '</div><div class="listItemDate">' +this.duedate+'</div></div>';
         this.id = uniqueCounter;
         uniqueCounter++;
+        this.html ='<div id="'+ this.id + '" class="listItem"><div class="listItemName">'+ this.title + '</div><div class="listItemDate">' +this.duedate+'</div></div>';
         };
+        this.infohtml = '<div class="itemInfoDiscription"><div class="ItemInfoTitle">Discription</div><div class="itemInfoDiscriptionConcent">' + this.discription + '</div></div><div class="itemInfodue">                <div class="ItemInfoTitle">Due</div><div class="itemInfoDeuDate">'+this.duedate + '</div></div>'
 
 //    var testitem = new ListItem('testitem','this is a discription', '01-01-1900', 'high');
 
@@ -100,32 +115,77 @@ var main = function () {
     groupA.addList(listA);
     var listB = new List('listB');
     groupA.addList(listB);
-    groupB.addList(listA);
+    groupB.addList(listB);
     
+    var itemA = new ListItem('itemA', 'this is a filler items', 'due today', 'high');
+    listA.listarray.push(itemA);
+    listB.listarray.push(itemA);
+    var itemB = new ListItem('itemB', 'this is a filler items', 'due today', 'high');
+    listB.listarray.push(itemB);
+    var itemC = new ListItem('itemC', 'this is a filler items', 'due today', 'high');
+    listA.listarray.push(itemC);
+
    
     
     var extractlistshtml = function(groupid){
         var grouparray = getgrouparray(groupid);
-        var html;
+        var listshtml = grouparray[0].html;
         var j;
-        for(j=0; j<grouparray.length;j++){
-            this.html +=grouparray[j].html;
-        }
+        for(j=1; j<grouparray.length;j++){
+            listshtml +=grouparray[j].html;
             
-    
-        return this.html;
+        }    
+        return listshtml;
     };
     
-    var extractitemshtml = function(groupid, listid){
+    var extractitemshtml = function(listid){
+
+        var items = getlistarray(listid);
+
+        var itemshtml = items[0].html;
         var i;
-        for(i=0; i<groups.length; i++){}
+        for(i=1; i<items.length; i++){
+            itemshtml += items[i].html;
+        }
+
+        return itemshtml;
+    }
+    
+    var extractiteminfohtml = function(itemid){
+        var i;
+        for(i = 0; i<groups.length; i++){
+            var j;
+            for(j = 0; j<groups[i].grouparray.length; j++){
+                var k;
+                for(k = 0; k<groups[i].grouparray[j].listarray.length; k++){
+                    if(groups[i].grouparray[j].listarray[k].id == itemsid){
+                        return groups[i].grouparray[j].listarray[k].infohtml;
+                    }
+                }
+            }
+        }
     }
     
     var Selectlist = function(listid){
          $(".itemWrapper").empty();
-        
+        var listarray = getlistarray(listid);
         $(".itemWrapper").append(listitems);
     }
+    
+    var addonclickitem = function(){
+        $(".itemWrapper").toArray().forEach(function(element){
+            $(element).on("click", function(){
+                $(".listItem").removeClass("active");
+                $(element).addClass("active");
+                $(".itemInfoSpace").empty();
+                var itemid = $(".listItem.active").get(0).id;
+                var iteminfohtml = extractiteminfohtml(itemid);
+                $(".itemInfoSpace").append(iteminfohtml);
+            });
+                
+       });
+    }
+    
         // look for the current active list
     $(".sidebarGroup").toArray().forEach(function (element) {
         //create a click handler for this element
@@ -133,11 +193,23 @@ var main = function () {
             $(".sidebarGroup").removeClass("active");
             $(element).addClass("active");
             $(".sidebarList").remove();
-             $(".itemWrapper").empty();
-            groupid = $(".sidebarGroup.active").get(0).id;
-            listhtml = extractlistshtml(groupid);
+            
+            var groupid = $(".sidebarGroup.active").get(0).id;
+            var listhtml = extractlistshtml(groupid);
+            $(".isdebarGroup.active").empty();
             $(".sidebarGroup.active").append(listhtml);
-            // make this one active $(".sidebarGroup.active .sidebarList(1)")
+            
+            $(".sidebarGroup.active .sidebarlist").removeClass("active")
+            $(".sidebarGroup.active .sidebarList:nth-child(1)").addClass("active");
+                        
+             $(".itemWrapper").empty();
+            
+            var listid = $(".sidebarList.active").get(0).id;
+            var itemhtml = extractitemshtml(listid);
+            console.log(itemhtml);
+            $(".itemWrapper").append(itemhtml);
+            
+            addonclickitem();
             return false;
         });
     });
