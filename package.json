@@ -1,0 +1,23 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "our amazing to do app",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjapko/Web-database-group-51.git"
+  },
+  "author": "Tjapko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tjapko/Web-database-group-51/issues"
+  },
+  "homepage": "https://github.com/tjapko/Web-database-group-51#readme"
+}
