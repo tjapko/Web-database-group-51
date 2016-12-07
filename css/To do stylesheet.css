@@ -1,29 +1,62 @@
 html{
     height: 100%;
+
 }
 body{
     height: 100%;
+    background-color: #00B0FF;
     
 }
 
 .backlayer{
     height: 100%;
+    width: 100%;
 }
 
 .slideShow {
     position: relative;
-    background-color: aquamarine;
-    width: 75%;
+    background-color: 00B0FF;
+    width: calc(100% - 300px);
     float: left;
     height: 100%;
+    
 }
+
+.Slide{
+    position: relative;
+    width: 100%
+}
+
 .signUpAndLogin{
     position: relative;
-    background-color: aqua;
-    width: 25%;
+    background-color: #00B0FF;
+    width: 300px;
     float: right;
     height: 100%;
+    -webkit-animation-name: Slide;
+    -webkit-animation-duration: 1s;
+    animation-name: Slide;
+    animation-duration: 1s;
 }
+
+@keyframes Slide {
+    0%   {width: 0px;}
+    100% {width: 300px;}
+}
+
+@-webkit-keyframes Slide {
+    0%   {width: 0px;}
+    100% {width: 300px;}
+}
+
+.Logo{
+    position: : relative;
+    padding: 20px;
+    top: 50px;
+    
+    
+}
+
 .slideShowWrapper{
     background-color: blue;
     width: 50%;
@@ -36,7 +69,6 @@ body{
 }
 
 .signUpAndLoginWrapper{
-    background-color: blue;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -44,10 +76,83 @@ body{
     height: 300px;
     width: 225px;
 }
-.button{
-    background-color: grey;
-    border: 1px;
+
+.accountCreation{
+    position:relative;
+}
+
+input[type=text], input[type=password]{
+   position: relative;
+    background-color: #00B0FF;
+    width: 200px;
+    left: 12px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 8px;
+    border-color: #FFFFFF;
+    font-size: 15px;
+}
+
+
+input[type=text]::-webkit-input-placeholder, input[type=password]::-webkit-input-placeholder {
+    color: #e6e6e6;
+    font-size: 15px;
+}
+
+input[type=text]::-moz-input-placeholder, input[type=password]::-moz-input-placeholder {
+    color: #f0f0f0;
+    opacity: 1;
+}
+
+input[type=text]::-ms-input-placeholder, input[type=password]::-ms-input-placeholder {
+    color: #f0f0f0;
+}
+
+input, select, textarea{
+    color: #f0f0f0;
+}
+
+textarea:focus, input:focus {
+    color: #ffffff;
+}
+
+.terms{
+    position: relative;
+    left: 1230%;
+}
+
+.SignUpWrapper{
+    position: relative;
+    top: 5px;
+}
+
+.LogInWrapper{
+    position: relative;
+    top: 80px;
+}
+a.button {
+    margin: auto;
+    position: absolute;
+    top: 20px;
+    left: 63px;
+    width: 100px;
+    height: 30px;
+    line-height:30px;
     text-align: center;
-    width: 50px;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: Helvetica;
+    background-color: #56D200;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #e6e6e6;
+}
+.or{
+    position: relative;
+    top: 78px;
+    left: 109px;
+    color: #FFFFFF;
+    font-family: helvetica, Arial;
     
 }
