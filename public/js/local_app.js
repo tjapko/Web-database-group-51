@@ -79,8 +79,14 @@ var main = function () {
         this.id = uniqueCounter;
         uniqueCounter++;
         this.html ='<div id="'+ this.id + '" class="listItem"><div class="listItemName">'+ this.title + '</div><div class="listItemDate">' +this.duedate+'</div></div>';
-        };
         this.infohtml = '<div class="itemInfoDiscription"><div class="ItemInfoTitle">Discription</div><div class="itemInfoDiscriptionConcent">' + this.discription + '</div></div><div class="itemInfodue">                <div class="ItemInfoTitle">Due</div><div class="itemInfoDeuDate">'+this.duedate + '</div></div>'
+        };
+        
+
+    var createListItemHtml = function(id, title, duedate){
+        var html = '<div id="'+ id + '" class="listItem"><div class="listItemName">'+ title + '</div><div class="listItemDate">' +duedate+'</div></div>';
+        return html;
+    }
 
 //    var testitem = new ListItem('testitem','this is a discription', '01-01-1900', 'high');
 
@@ -90,16 +96,26 @@ var main = function () {
     $(".listItemAdd").on("click", function (event){
        // window.alert(testitem.html);
         //create a new item
-        var listitem= new ListItem('insert your title here');
+       // var listitem= new ListItem('insert your title here');
         // add the item to the database
-        
-        lijstA.listarray.push(listitem);
-        
+        $.get('/addlistitem', function(res){});
+       // lijstA.listarray.push(listitem);
+        $.getJSON("/gettodos", addToDoToList);
         // showing the item on screen
-       $(".itemWrapper").append(listitem.html);
+      // $(".itemWrapper").append(listitem.html);
     });
 
+    var addToDoToList = function(todos){
+        $(".itemWrapper").empty();
+       
+        for( var key in todos){
+             console.log(todos[key]);
+            var html = createListItemHtml(todos[key].id, todos[key].title, todos[key].duedate);
+            $(".itemWrapper").append(html);
+        }
+    }
     
+    $.getJSON("/gettodos", addToDoToList);
     
 
    

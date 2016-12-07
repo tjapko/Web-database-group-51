@@ -5,6 +5,10 @@ var url = require("http");
 var app;
 
 var port = 5614;
+
+var uniqueCounter = 0;
+var todos = [];
+
 app = express();
 http.createServer(app).listen(port);
 
@@ -16,4 +20,28 @@ app.get("/", function (req, res){
 });
 
 
-console.log("Server listening on port 5614");
+app.get('/addlistitem', function(req,res){
+    
+    var listitem = new ListItem('insert title here','this is a discription', 'now','insane');
+   // console.log(listitem.html);
+
+   listitemjson = JSON.stringify(listitem);
+   todos.push(listitemjson);
+ 
+});
+
+app.get('/gettodos', function (req, res){
+    res.json(todos);
+});
+
+
+  var ListItem = function(title, discription, duedate, priority){
+        this.title = title;
+        this.discription = discription;
+        this.duedate = duedate;
+        this.priority = priority;
+        this.id = uniqueCounter;
+        uniqueCounter++;
+       
+     };
+       
