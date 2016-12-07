@@ -98,9 +98,12 @@ var main = function () {
         //create a new item
        // var listitem= new ListItem('insert your title here');
         // add the item to the database
-        $.get('/addlistitem', function(res){});
+        $.post('/addlistitem', function(res){
+            $.getJSON("/gettodos", addToDoToList);
+
+        });
        // lijstA.listarray.push(listitem);
-        $.getJSON("/gettodos", addToDoToList);
+        
         // showing the item on screen
       // $(".itemWrapper").append(listitem.html);
     });
@@ -109,10 +112,10 @@ var main = function () {
         $(".itemWrapper").empty();
        
         for( var key in todos){
-             console.log(todos[key]);
             var html = createListItemHtml(todos[key].id, todos[key].title, todos[key].duedate);
             $(".itemWrapper").append(html);
         }
+        addonclickitem();
     }
     
     $.getJSON("/gettodos", addToDoToList);
@@ -188,15 +191,28 @@ var main = function () {
         $(".itemWrapper").append(listitems);
     }
     
+    var getiteminfohtml = function(item){
+        var html = '<div class="itemInfoDiscription"><div class="ItemInfoTitle">Discription</div><div class="itemInfoDiscriptionConcent">' + item.discription + '</div></div><div class="itemInfodue">                <div class="ItemInfoTitle">Due</div><div class="itemInfoDeuDate">'+item.duedate + '</div></div><button class="delete">delete</button>'
+         $(".itemInfoSpace").append(html);
+        
+        
+         $(".delete").on("click", function(){
+             var itemid = $(".listItem.active").get(0).id;
+             $.getJSON("/deleteitem/?id="+ itemid, addToDoToList);
+        });
+    }
+    
     var addonclickitem = function(){
-        $(".itemWrapper").toArray().forEach(function(element){
+        $(".listItem").toArray().forEach(function(element){
             $(element).on("click", function(){
                 $(".listItem").removeClass("active");
                 $(element).addClass("active");
                 $(".itemInfoSpace").empty();
                 var itemid = $(".listItem.active").get(0).id;
-                var iteminfohtml = extractiteminfohtml(itemid);
-                $(".itemInfoSpace").append(iteminfohtml);
+                $.getJSON("/gettodoinfo/?id="+ itemid, getiteminfohtml);
+               
+        
+             
             });
                 
        });
